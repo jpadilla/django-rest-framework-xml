@@ -1,4 +1,4 @@
-# djangorestframework-xml
+# REST Framework XML
 
 [![build-status-image]][travis]
 [![pypi-version]][pypi]
