@@ -69,6 +69,7 @@ class ExampleView(APIView):
 Install testing requirements.
 
 ```bash
+$ pip install -r requirements.txt
 $ pip install -r requirements-test.txt
 ```
 
