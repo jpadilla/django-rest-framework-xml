@@ -1,0 +1,4 @@
+site_name: djangorestframework-xml
+site_description: XML support for Django REST Framework
+repo_url: https://github.com/jpadilla/django-rest-framework-xml
+site_dir: html
