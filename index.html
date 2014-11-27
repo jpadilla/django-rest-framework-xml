@@ -50,11 +50,39 @@
         <!-- Expanded navigation -->
         <div class="navbar-collapse collapse">
             
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="parsers/">Parsers</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="renderers/">Renderers</a>
+                    </li>
+                
+                
+                </ul>
+            
 
             
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 
+                
+                <li class="disabled">
+                    <a rel="next" >
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="parsers/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
                 
                 
                 <li>
@@ -151,7 +179,8 @@ class ExampleView(APIView):
 
 <h2 id="testing">Testing</h2>
 <p>Install testing requirements.</p>
-<pre><code class="bash">$ pip install -r requirements-test.txt
+<pre><code class="bash">$ pip install -r requirements.txt
+$ pip install -r requirements-test.txt
 </code></pre>
 
 <p>Run with runtests.</p>
