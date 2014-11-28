@@ -41,20 +41,36 @@ REST_FRAMEWORK = {
 You can also set the renderer and parser used for an individual view, or viewset, using the APIView class based views.
 
 ```python
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import routers, serializers, viewsets
 from rest_framework_xml.parsers import XMLParser
 from rest_framework_xml.renderers import XMLRenderer
 
-class ExampleView(APIView):
-    """
-    A view that can accept POST requests with XML content.
-    """
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'is_staff')
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     parser_classes = (XMLParser,)
     renderer_classes = (XMLRenderer,)
+```
 
-    def post(self, request, format=None):
-        return Response({'received data': request.DATA})
+### Sample output
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <list-item>
+        <url>http://127.0.0.1:8000/users/1/.xml</url>
+        <username>jpadilla</username>
+        <email>jpadilla@example.com</email>
+        <is_staff>True</is_staff>
+    </list-item>
+</root>
 ```
 
 ## Documentation & Support
@@ -62,7 +78,6 @@ class ExampleView(APIView):
 Full documentation for the project is available at [http://jpadilla.github.io/django-rest-framework-xml][docs].
 
 You may also want to follow the [author][jpadilla] on Twitter.
-
 
 
 [build-status-image]: https://secure.travis-ci.org/jpadilla/django-rest-framework-xml.png?branch=master
