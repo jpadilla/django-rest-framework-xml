@@ -138,7 +138,7 @@
 <p>XML support for Django REST Framework</p>
 <hr />
 <h2 id="overview">Overview</h2>
-<p>XML support extracted as a third party package directly from the official Django REST Framework implementation. It's built using the <a href="https://pypi.python.org/pypi/defusedxml">defusedxml</a> package.</p>
+<p>XML support extracted as a third party package directly from the official Django REST Framework implementation. It requires the <a href="https://pypi.python.org/pypi/defusedxml">defusedxml</a> package only because it safeguards against some security issues that were discovered.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>Python (2.7, 3.3, 3.4)</li>
@@ -161,20 +161,34 @@
 </code></pre>
 
 <p>You can also set the renderer and parser used for an individual view, or viewset, using the APIView class based views.</p>
-<pre><code class="python">from rest_framework.response import Response
-from rest_framework.views import APIView
+<pre><code class="python">from rest_framework import routers, serializers, viewsets
 from rest_framework_xml.parsers import XMLParser
 from rest_framework_xml.renderers import XMLRenderer
 
-class ExampleView(APIView):
-    &quot;&quot;&quot;
-    A view that can accept POST requests with XML content.
-    &quot;&quot;&quot;
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'is_staff')
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     parser_classes = (XMLParser,)
     renderer_classes = (XMLRenderer,)
+</code></pre>
 
-    def post(self, request, format=None):
-        return Response({'received data': request.DATA})
+<h3 id="sample-output">Sample output</h3>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;root&gt;
+    &lt;list-item&gt;
+        &lt;url&gt;http://127.0.0.1:8000/users/1/.xml&lt;/url&gt;
+        &lt;username&gt;jpadilla&lt;/username&gt;
+        &lt;email&gt;jpadilla@example.com&lt;/email&gt;
+        &lt;is_staff&gt;True&lt;/is_staff&gt;
+    &lt;/list-item&gt;
+&lt;/root&gt;
 </code></pre>
 
 <h2 id="testing">Testing</h2>
