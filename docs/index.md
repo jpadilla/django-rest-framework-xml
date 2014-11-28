@@ -19,6 +19,8 @@ XML support for Django REST Framework
 
 XML support extracted as a third party package directly from the official Django REST Framework implementation. It requires the [defusedxml][defusedxml] package only because it safeguards against some security issues that were discovered.
 
+**Note**: XML output provided is an ad-hoc format that isn't formally described. If you have specific XML requirements you'll need to write your own XML parsers/renderers in order to fully control the representation.
+
 ## Requirements
 
 * Python (2.7, 3.3, 3.4)
