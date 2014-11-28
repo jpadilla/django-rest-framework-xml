@@ -9,7 +9,7 @@ Full documentation for the project is available at [http://jpadilla.github.io/dj
 
 ## Overview
 
-XML support extracted as a third party package directly from the official Django REST Framework implementation. It's built using the [defusedxml][defusedxml] package.
+XML support extracted as a third party package directly from the official Django REST Framework implementation. It requires the [defusedxml][defusedxml] package only because it safeguards against some security issues that were discovered.
 
 ## Requirements
 
