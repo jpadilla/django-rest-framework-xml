@@ -3,6 +3,10 @@
 [![build-status-image]][travis]
 [![pypi-version]][pypi]
 
+**XML support for Django REST Framework**
+
+Full documentation for the project is available at [http://jpadilla.github.io/django-rest-framework-xml][docs].
+
 ## Overview
 
 XML support extracted as a third party package directly from the official Django REST Framework implementation. It's built using the [defusedxml][defusedxml] package.
@@ -55,7 +59,7 @@ class ExampleView(APIView):
 
 ## Documentation & Support
 
-Full documentation for the project is available at http://jpadilla.github.io/django-rest-framework-xml/.
+Full documentation for the project is available at [http://jpadilla.github.io/django-rest-framework-xml][docs].
 
 You may also want to follow the [author][jpadilla] on Twitter.
 
@@ -66,4 +70,5 @@ You may also want to follow the [author][jpadilla] on Twitter.
 [pypi-version]: https://pypip.in/version/djangorestframework-xml/badge.svg
 [pypi]: https://pypi.python.org/pypi/djangorestframework-xml
 [defusedxml]: https://pypi.python.org/pypi/defusedxml
+[docs]: http://jpadilla.github.io/django-rest-framework-xml
 [jpadilla]: https://twitter.com/jpadilla_
