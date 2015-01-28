@@ -5,7 +5,7 @@ import datetime
 
 from django.test import TestCase
 from django.utils import unittest
-from rest_framework.compat import StringIO
+from django.utils.six.moves import StringIO
 from rest_framework_xml.parsers import XMLParser
 from rest_framework_xml.compat import etree
 

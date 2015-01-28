@@ -5,7 +5,8 @@ from __future__ import unicode_literals
 
 from django.utils import six
 from django.utils.xmlutils import SimplerXMLGenerator
-from rest_framework.compat import StringIO, smart_text
+from django.utils.six.moves import StringIO
+from django.utils.encoding import smart_text
 from rest_framework.renderers import BaseRenderer
 
 
