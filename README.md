@@ -84,7 +84,7 @@ You may also want to follow the [author][jpadilla] on Twitter.
 
 [build-status-image]: https://secure.travis-ci.org/jpadilla/django-rest-framework-xml.png?branch=master
 [travis]: http://travis-ci.org/jpadilla/django-rest-framework-xml?branch=master
-[pypi-version]: https://pypip.in/version/djangorestframework-xml/badge.svg
+[pypi-version]: https://img.shields.io/pypi/v/djangorestframework-xml.svg
 [pypi]: https://pypi.python.org/pypi/djangorestframework-xml
 [defusedxml]: https://pypi.python.org/pypi/defusedxml
 [docs]: http://jpadilla.github.io/django-rest-framework-xml
