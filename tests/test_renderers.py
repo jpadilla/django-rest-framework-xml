@@ -91,6 +91,12 @@ class XMLRendererTestCase(TestCase):
         self.assertXMLContains(content, '<sub_name>first</sub_name>')
         self.assertXMLContains(content, '<sub_name>second</sub_name>')
 
+    def test_render_list(self):
+        renderer = XMLRenderer()
+        content = renderer.render(self._complex_data, 'application/xml')
+        self.assertXMLContains(content, '<sub_data_list><list-item>')
+        self.assertXMLContains(content, '</list-item></sub_data_list>')
+
     @unittest.skipUnless(etree, 'defusedxml not installed')
     def test_render_and_parse_complex_data(self):
         """
