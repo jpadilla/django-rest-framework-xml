@@ -18,6 +18,7 @@ class XMLRenderer(BaseRenderer):
     media_type = 'application/xml'
     format = 'xml'
     charset = 'utf-8'
+    item_tag_name = 'list-item'
 
     def render(self, data, accepted_media_type=None, renderer_context=None):
         """
@@ -41,9 +42,9 @@ class XMLRenderer(BaseRenderer):
     def _to_xml(self, xml, data):
         if isinstance(data, (list, tuple)):
             for item in data:
-                xml.startElement("list-item", {})
+                xml.startElement(self.item_tag_name, {})
                 self._to_xml(xml, item)
-                xml.endElement("list-item")
+                xml.endElement(self.item_tag_name)
 
         elif isinstance(data, dict):
             for key, value in six.iteritems(data):
