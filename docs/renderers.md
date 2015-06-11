@@ -58,3 +58,5 @@ If you are considering using `XML` for your API, you may want to consider implem
 **.format**: `'.xml'`
 
 **.charset**: `utf-8`
+
+**item_tag_name**: `list-item`
