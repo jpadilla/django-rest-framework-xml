@@ -42,22 +42,20 @@ class XMLParser(BaseParser):
         convert the xml `element` into the corresponding python object
         """
 
-        children = list(element)
+        parent_container = dict()
 
-        if len(children) == 0:
-            return self._type_convert(element.text)
+        if element.getchildren():
+            # recursively check for child elements
+            child_container = []
+            for child in element:
+                child_container.append(self._xml_convert(child))
+
+            parent_container.update({element.tag: child_container})
+
         else:
-            # if the fist child tag is list-item means all children are list-item
-            if children[0].tag == "list-item":
-                data = []
-                for child in children:
-                    data.append(self._xml_convert(child))
-            else:
-                data = {}
-                for child in children:
-                    data[child.tag] = self._xml_convert(child)
+            parent_container.update({element.tag: element.text})
 
-            return data
+        return parent_container
 
     def _type_convert(self, value):
         """
