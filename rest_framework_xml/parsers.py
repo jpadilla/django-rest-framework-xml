@@ -37,6 +37,13 @@ class XMLParser(BaseParser):
 
         return data
 
+    def _check_xml_list(self, element):
+        """
+        Checks that an element has multiple tags and that they are all the same, 
+        to validate that the element is a properly formatted list
+        """
+        return len(element) > 1 and len(set([child.tag for child in element])) <= 1
+
     def _xml_convert(self, element):
         """
         convert the xml `element` into the corresponding python object
@@ -48,7 +55,7 @@ class XMLParser(BaseParser):
             return self._type_convert(element.text)
         else:
             # if the fist child tag is list-item means all children are list-item
-            if children[0].tag == "list-item":
+            if self._check_xml_list(element):
                 data = []
                 for child in children:
                     data.append(self._xml_convert(child))
