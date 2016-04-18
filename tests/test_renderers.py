@@ -5,6 +5,7 @@ import datetime
 from decimal import Decimal
 
 from django.test import TestCase
+from django.utils import unittest
 from django.utils.six.moves import StringIO
 from rest_framework_xml.renderers import XMLRenderer
 from rest_framework_xml.parsers import XMLParser
@@ -96,6 +97,7 @@ class XMLRendererTestCase(TestCase):
         self.assertXMLContains(content, '<sub_data_list><list-item>')
         self.assertXMLContains(content, '</list-item></sub_data_list>')
 
+    @unittest.skipUnless(etree, 'defusedxml not installed')
     def test_render_and_parse_complex_data(self):
         """
         Test XML rendering.

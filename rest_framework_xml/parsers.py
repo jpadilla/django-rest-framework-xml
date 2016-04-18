@@ -39,7 +39,7 @@ class XMLParser(BaseParser):
 
     def _check_xml_list(self, element):
         """
-        Checks that an element has multiple tags and that they are all the same, 
+        Checks that an element has multiple tags and that they are all the same,
         to validate that the element is a properly formatted list
         """
         return len(element) > 1 and len(set([child.tag for child in element])) <= 1
