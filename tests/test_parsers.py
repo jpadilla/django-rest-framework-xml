@@ -4,7 +4,7 @@ import datetime
 
 
 from django.test import TestCase
-from django.utils import unittest
+from django.test.utils import skipUnless
 from django.utils.six.moves import StringIO
 from rest_framework_xml.parsers import XMLParser
 from rest_framework_xml.compat import etree
@@ -53,13 +53,13 @@ class TestXMLParser(TestCase):
             ]
         }
 
-    @unittest.skipUnless(etree, 'defusedxml not installed')
+    @skipUnless(etree, 'defusedxml not installed')
     def test_parse(self):
         parser = XMLParser()
         data = parser.parse(self._input)
         self.assertEqual(data, self._data)
 
-    @unittest.skipUnless(etree, 'defusedxml not installed')
+    @skipUnless(etree, 'defusedxml not installed')
     def test_complex_data_parse(self):
         parser = XMLParser()
         data = parser.parse(self._complex_data_input)
