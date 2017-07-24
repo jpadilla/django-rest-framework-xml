@@ -5,8 +5,9 @@ import datetime
 from decimal import Decimal
 
 from django.test import TestCase
-from django.utils import unittest
+from django.test.utils import skipUnless
 from django.utils.six.moves import StringIO
+from django.utils.translation import gettext_lazy
 from rest_framework_xml.renderers import XMLRenderer
 from rest_framework_xml.parsers import XMLParser
 from rest_framework_xml.compat import etree
@@ -97,7 +98,13 @@ class XMLRendererTestCase(TestCase):
         self.assertXMLContains(content, '<sub_data_list><list-item>')
         self.assertXMLContains(content, '</list-item></sub_data_list>')
 
-    @unittest.skipUnless(etree, 'defusedxml not installed')
+    def test_render_lazy(self):
+        renderer = XMLRenderer()
+        lazy = gettext_lazy('hello')
+        content = renderer.render({'field': lazy}, 'application/xml')
+        self.assertXMLContains(content, '<field>hello</field>')
+
+    @skipUnless(etree, 'defusedxml not installed')
     def test_render_and_parse_complex_data(self):
         """
         Test XML rendering.
