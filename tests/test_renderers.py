@@ -33,6 +33,41 @@ class XMLRendererTestCase(TestCase):
         ]
     }
 
+    _complex_order_data = {
+        "creation_date": datetime.datetime(2017, 07, 01, 14, 30, 00),
+        "orderId": 1,
+        "positions": [
+            {
+                "posNo": 1,
+                "amount": 3,
+                "messages": [
+                    {
+                        "type": "O",
+                        "code": "xyz"
+                    },
+                    {
+                        "type": "L",
+                        "code": "zyx"
+                    }
+                ]
+            },
+            {
+                "posNo": 2,
+                "amount": 1,
+                "messages": [
+                    {
+                        "type": "O",
+                        "code": "xyz"
+                    },
+                    {
+                        "type": "L",
+                        "code": "zyx"
+                    }
+                ]
+            }
+        ]
+    }
+
     def test_render_string(self):
         """
         Test XML rendering.
