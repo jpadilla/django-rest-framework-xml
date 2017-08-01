@@ -120,4 +120,7 @@ class XMLRendererTestCase(TestCase):
     def assertXMLContains(self, xml, string):
         self.assertTrue(xml.startswith('<?xml version="1.0" encoding="utf-8"?>\n<root>'))
         self.assertTrue(xml.endswith('</root>'))
+    def assertXMLContains(self, xml, string, root_tag='root'):
+        self.assertTrue(xml.startswith('<?xml version="1.0" encoding="utf-8"?>\n<{0}>'.format(root_tag)))
+        self.assertTrue(xml.endswith('</{0}>'.format(root_tag)))
         self.assertTrue(string in xml, '%r not in %r' % (string, xml))
