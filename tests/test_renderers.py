@@ -34,7 +34,7 @@ class XMLRendererTestCase(TestCase):
     }
 
     _complex_order_data = {
-        "creation_date": datetime.datetime(2017, 07, 01, 14, 30, 00),
+        "creation_date": datetime.datetime(2017, 7, 1, 14, 30, 00),
         "orderId": 1,
         "positions": [
             {
