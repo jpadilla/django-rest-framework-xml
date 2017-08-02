@@ -55,7 +55,7 @@ class XMLRenderer(BaseRenderer):
 
         stream.truncate(0)
         stream.write('<?xml version="1.0" encoding="utf-8"?>\n')
-        stream.write(ET.tostring(root))
+        stream.write(str(ET.tostring(root)))
 
     def _to_xml(self, xml, data):
         if isinstance(data, (list, tuple)):
