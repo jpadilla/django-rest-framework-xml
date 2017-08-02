@@ -139,6 +139,14 @@ class XMLRendererTestCase(TestCase):
         content = renderer.render({'field': lazy}, 'application/xml')
         self.assertXMLContains(content, '<field>hello</field>')
 
+    def test_render_override_list_item(self):
+        renderer = XMLRenderer()
+        renderer.root_tag_name = 'order'
+        renderer.override_item_tag_name = True
+        content = renderer.render(self._complex_order_data, 'application/xml')
+        self.assertXMLContains(content, '<position>', renderer.root_tag_name)
+        self.assertXMLContains(content, '<message>', renderer.root_tag_name)
+
     @skipUnless(etree, 'defusedxml not installed')
     def test_render_and_parse_complex_data(self):
         """
@@ -152,9 +160,6 @@ class XMLRendererTestCase(TestCase):
         error_msg = "complex data differs!IN:\n %s \n\n OUT:\n %s" % (repr(self._complex_data), repr(complex_data_out))
         self.assertEqual(self._complex_data, complex_data_out, error_msg)
 
-    def assertXMLContains(self, xml, string):
-        self.assertTrue(xml.startswith('<?xml version="1.0" encoding="utf-8"?>\n<root>'))
-        self.assertTrue(xml.endswith('</root>'))
     def assertXMLContains(self, xml, string, root_tag='root'):
         self.assertTrue(xml.startswith('<?xml version="1.0" encoding="utf-8"?>\n<{0}>'.format(root_tag)))
         self.assertTrue(xml.endswith('</{0}>'.format(root_tag)))
