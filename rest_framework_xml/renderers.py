@@ -50,12 +50,13 @@ class XMLRenderer(BaseRenderer):
         root = ET.fromstring(stream.getvalue())
         for parent in root.findall('.//*list-item/..'):
             child_name = parent.tag[0:-1]
-            for child in parent.getchildren():
+            for child in list(parent):
                 child.tag = child_name
 
         stream.truncate(0)
+        stream.seek(0)
         stream.write('<?xml version="1.0" encoding="utf-8"?>\n')
-        stream.write(str(ET.tostring(root)))
+        stream.write(ET.tostring(root).decode('utf-8'))
 
     def _to_xml(self, xml, data):
         if isinstance(data, (list, tuple)):
