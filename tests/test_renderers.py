@@ -38,8 +38,9 @@ class XMLRendererTestCase(TestCase):
         Test XML rendering.
         """
         renderer = XMLRenderer()
-        content = renderer.render({'field': 'astring'}, 'application/xml')
+        content = renderer.render({'field': 'astring', 'field_b': '0001'}, 'application/xml')
         self.assertXMLContains(content, '<field>astring</field>')
+        self.assertXMLContains(content, '<field_b>0001</field_b>')
 
     def test_render_integer(self):
         """

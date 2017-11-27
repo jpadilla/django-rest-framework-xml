@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 import datetime
 
-
+from decimal import Decimal
 from django.test import TestCase
 from django.test.utils import skipUnless
 from django.utils.six.moves import StringIO
@@ -19,13 +19,17 @@ class TestXMLParser(TestCase):
             '<field_b>dasd</field_b>'
             '<field_c></field_c>'
             '<field_d>2011-12-25 12:45:00</field_d>'
+            '<field_e>121.1</field_e>'
+            '<field_f>0001</field_f>'
             '</root>'
         )
         self._data = {
             'field_a': 121,
             'field_b': 'dasd',
             'field_c': None,
-            'field_d': datetime.datetime(2011, 12, 25, 12, 45, 00)
+            'field_d': datetime.datetime(2011, 12, 25, 12, 45, 00),
+            'field_e': Decimal('121.1'),
+            'field_f': '0001',
         }
         self._complex_data_input = StringIO(
             '<?xml version="1.0" encoding="utf-8"?>'

@@ -72,6 +72,9 @@ class XMLParser(BaseParser):
         except ValueError:
             pass
 
+        if value.startswith('0'):
+            return value
+
         try:
             return int(value)
         except ValueError:
