@@ -23,9 +23,9 @@ XML support extracted as a third party package directly from the official Django
 
 ## Requirements
 
-* Python (2.7, 3.3, 3.4)
-* Django (1.6, 1.7)
-* Django REST Framework (2.4.4, 3.0, 3.1)
+* Python (2.7, 3.4, 3.5, 3.6)
+* Django (1.8, 1.11, 2.0)
+* Django REST Framework (3.x)
 
 ## Installation
 
