@@ -51,3 +51,52 @@ If you are considering using `XML` for your API, you may want to consider implem
 Requires the `defusedxml` package to be installed.
 
 **.media_type**: `application/xml`
+
+
+# Converting values to native Python data types
+
+N.B. This section describes behavior that has changed from version 2 upwards.
+
+Values are *not* converted to native Python, which means that you'll get strings from the default parser. You can implement your own conversion to native data types with a custom Parser that implements a `type_convert(value)` method. This method accepts a single value and returns the converted value.
+
+In version 1.x and earlier, conversions were done for you. To retain the original behavior, implement a Parser like below and enable this Parser in `DEFAULT_PARSER_CLASSES`:
+
+    import datetime
+    import decimal
+
+    from rest_framework_xml.parsers import XMLParser
+
+    class MyXMLParser(XMLParser):
+
+        def type_convert(self, value):
+            if value is None:
+                return value
+
+            try:
+                return datetime.datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                pass
+
+            try:
+                return int(value)
+            except ValueError:
+                pass
+
+            try:
+                return decimal.Decimal(value)
+            except decimal.InvalidOperation:
+                pass
+
+             return value
+
+Enable this in your settings:
+
+    REST_FRAMEWORK = {
+        'DEFAULT_PARSER_CLASSES': (
+            'path.to.MyXMLParser',
+        )
+    }
+
+Or use it in `parser_classes` or the decorator for individual class based or function based views.
+
+    import path.to.MyXMLParser as XMLParser
