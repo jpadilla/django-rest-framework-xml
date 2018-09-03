@@ -47,8 +47,9 @@ class XMLParser(BaseParser):
         if len(children) == 0:
             return self._type_convert(element.text)
         else:
-            # if the fist child tag is list-item means all children are list-item
-            if children[0].tag == "list-item":
+            # check tag of first and last children to determine if it is a list
+            # also avoid if len( children ) is one
+            if children[0].tag == children[-1].tag:
                 data = []
                 for child in children:
                     data.append(self._xml_convert(child))
