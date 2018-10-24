@@ -12,7 +12,7 @@ matrix:
   fast_finish: true
 
 install:
-  - pip install tox tox-travis
+  - pip install tox<3 tox-travis
 
 script:
     - tox
