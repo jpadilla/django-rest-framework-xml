@@ -7,9 +7,6 @@ python:
   - "3.4"
   - "3.5"
 
-matrix:
-  fast_finish: true
-
 install:
   - pip install tox tox-travis
 
