@@ -32,6 +32,20 @@ class XMLRendererTestCase(TestCase):
             }
         ]
     }
+    _complex_data_out = {
+        "creation_date": "2011-12-25 12:45:00",
+        "name": "name",
+        "sub_data_list": [
+            {
+                "sub_id": "1",
+                "sub_name": "first"
+            },
+            {
+                "sub_id": "2",
+                "sub_name": "second"
+            }
+        ]
+    }
 
     def test_render_string(self):
         """
@@ -114,8 +128,9 @@ class XMLRendererTestCase(TestCase):
 
         parser = XMLParser()
         complex_data_out = parser.parse(content)
-        error_msg = "complex data differs!IN:\n %s \n\n OUT:\n %s" % (repr(self._complex_data), repr(complex_data_out))
-        self.assertEqual(self._complex_data, complex_data_out, error_msg)
+        error_msg = "complex data differs!IN:\n %s \n\n OUT:\n %s" % (
+            repr(complex_data_out), repr(self._complex_data_out))
+        self.assertEqual(complex_data_out, self._complex_data_out, error_msg)
 
     def assertXMLContains(self, xml, string):
         self.assertTrue(xml.startswith('<?xml version="1.0" encoding="utf-8"?>\n<root>'))

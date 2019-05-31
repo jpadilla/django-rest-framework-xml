@@ -2,8 +2,6 @@
 Provides XML parsing support.
 """
 from __future__ import unicode_literals
-import datetime
-import decimal
 
 from django.conf import settings
 from django.utils import six
@@ -45,7 +43,7 @@ class XMLParser(BaseParser):
         children = list(element)
 
         if len(children) == 0:
-            return self._type_convert(element.text)
+            return self.type_convert(element.text)
         else:
             # if the fist child tag is list-item means all children are list-item
             if children[0].tag == "list-item":
@@ -59,27 +57,9 @@ class XMLParser(BaseParser):
 
             return data
 
-    def _type_convert(self, value):
+    def type_convert(self, value):
         """
-        Converts the value returned by the XMl parse into the equivalent
-        Python type
+        Converts the value returned by the XMl parse into the equivalent Python
+        type. Override this method in your own Parser to do the conversion.
         """
-        if value is None:
-            return value
-
-        try:
-            return datetime.datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            pass
-
-        try:
-            return int(value)
-        except ValueError:
-            pass
-
-        try:
-            return decimal.Decimal(value)
-        except decimal.InvalidOperation:
-            pass
-
         return value
