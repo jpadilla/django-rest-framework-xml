@@ -55,7 +55,13 @@ class XMLParser(BaseParser):
             else:
                 data = {}
                 for child in children:
-                    data[child.tag] = self._xml_convert(child)
+                    if child.attrib:
+                        data[child.tag] = {
+                            'value': self._xml_convert(child),
+                            'attributes': child.attrib
+                        }
+                    else:
+                        data[child.tag] = self._xml_convert(child)
 
             return data
 
