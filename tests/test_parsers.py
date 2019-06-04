@@ -52,6 +52,32 @@ class TestXMLParser(TestCase):
                 }
             ]
         }
+        self._attribute_data_input = StringIO(
+            '<?xml version="1.0" encoding="utf-8"?>'
+            '<root>'
+            '<field_a name="attribute_a">121.0</field_a>'
+            '<field_b id="0001" name="attribute_b">dasd</field_b>'
+            '<field_c></field_c>'
+            '<field_d>2011-12-25 12:45:00</field_d>'
+            '</root>'
+        )
+        self._attribute_data = {
+            'field_a': {
+                'value': 121,
+                'attributes': {
+                    'name': 'attribute_a'
+                }
+            },
+            'field_b': {
+                'value': 'dasd',
+                'attributes': {
+                    'id': '0001',
+                    'name': 'attribute_b'
+                }
+            },
+            'field_c': None,
+            'field_d': datetime.datetime(2011, 12, 25, 12, 45, 00)
+        }
 
     @skipUnless(etree, 'defusedxml not installed')
     def test_parse(self):
@@ -64,3 +90,9 @@ class TestXMLParser(TestCase):
         parser = XMLParser()
         data = parser.parse(self._complex_data_input)
         self.assertEqual(data, self._complex_data)
+
+    @skipUnless(etree, 'defusedxml not installed')
+    def test_complex_data_parse(self):
+        parser = XMLParser()
+        data = parser.parse(self._attribute_data_input)
+        self.assertEqual(data, self._attribute_data)
