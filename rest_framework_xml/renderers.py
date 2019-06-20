@@ -20,6 +20,7 @@ class XMLRenderer(BaseRenderer):
     charset = 'utf-8'
     item_tag_name = 'list-item'
     root_tag_name = 'root'
+    generator_class = SimplerXMLGenerator
 
     def render(self, data, accepted_media_type=None, renderer_context=None):
         """
@@ -30,7 +31,7 @@ class XMLRenderer(BaseRenderer):
 
         stream = StringIO()
 
-        xml = SimplerXMLGenerator(stream, self.charset)
+        xml = self.generator_class(stream, self.charset)
         xml.startDocument()
         xml.startElement(self.root_tag_name, {})
 
