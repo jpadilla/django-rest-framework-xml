@@ -3,9 +3,10 @@ Provides XML rendering support.
 """
 from __future__ import unicode_literals
 
-from django.utils import six
+import six
+
 from django.utils.xmlutils import SimplerXMLGenerator
-from django.utils.six.moves import StringIO
+from six.moves import StringIO
 from django.utils.encoding import force_text
 from rest_framework.renderers import BaseRenderer
 

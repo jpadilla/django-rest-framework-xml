@@ -1,1 +1,2 @@
 defusedxml>=0.3
+six

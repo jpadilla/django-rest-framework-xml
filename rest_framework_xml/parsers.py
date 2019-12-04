@@ -4,9 +4,9 @@ Provides XML parsing support.
 from __future__ import unicode_literals
 import datetime
 import decimal
+import six
 
 from django.conf import settings
-from django.utils import six
 from rest_framework.exceptions import ParseError
 from rest_framework.parsers import BaseParser
 
