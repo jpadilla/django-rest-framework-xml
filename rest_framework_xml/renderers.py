@@ -3,9 +3,8 @@ Provides XML rendering support.
 """
 from __future__ import unicode_literals
 
-from django.utils import six
+from io import StringIO
 from django.utils.xmlutils import SimplerXMLGenerator
-from django.utils.six.moves import StringIO
 from django.utils.encoding import force_text
 from rest_framework.renderers import BaseRenderer
 
@@ -48,7 +47,7 @@ class XMLRenderer(BaseRenderer):
                 xml.endElement(self.item_tag_name)
 
         elif isinstance(data, dict):
-            for key, value in six.iteritems(data):
+            for key, value in data.items():
                 xml.startElement(key, {})
                 self._to_xml(xml, value)
                 xml.endElement(key)

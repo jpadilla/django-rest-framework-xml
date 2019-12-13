@@ -6,7 +6,6 @@ import datetime
 import decimal
 
 from django.conf import settings
-from django.utils import six
 from rest_framework.exceptions import ParseError
 from rest_framework.parsers import BaseParser
 
@@ -32,7 +31,7 @@ class XMLParser(BaseParser):
         try:
             tree = etree.parse(stream, parser=parser, forbid_dtd=True)
         except (etree.ParseError, ValueError) as exc:
-            raise ParseError('XML parse error - %s' % six.text_type(exc))
+            raise ParseError('XML parse error - %s' % str(exc))
         data = self._xml_convert(tree.getroot())
 
         return data
