@@ -1,3 +1,7 @@
+# Works with Django 3
+
+This is a fork of the jpadilla version of the renderer with no support for python 2.7 which was removed from Django at version 3 thus breaking this module during the import of `django.utils.six` and in other places.
+
 # REST Framework XML
 
 [![build-status-image]][travis]
