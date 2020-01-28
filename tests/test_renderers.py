@@ -6,7 +6,7 @@ from decimal import Decimal
 
 from django.test import TestCase
 from django.test.utils import skipUnless
-from django.utils.six.moves import StringIO
+from six.moves import StringIO
 from django.utils.translation import gettext_lazy
 from rest_framework_xml.renderers import XMLRenderer
 from rest_framework_xml.parsers import XMLParser
