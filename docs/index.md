@@ -1,6 +1,6 @@
 <div class="badges">
-  <a href="http://travis-ci.org/jpadilla/django-rest-framework-xml?branch=master">
-    <img src="https://travis-ci.org/jpadilla/django-rest-framework-xml.svg?branch=master">
+  <a href="https://github.com/jpadilla/django-rest-framework-xml/actions?query=workflow%3ACI">
+    <img src="https://github.com/jpadilla/django-rest-framework-xml/workflows/CI/badge.svg">
   </a>
   <a href="https://pypi.python.org/pypi/djangorestframework-xml">
     <img src="https://img.shields.io/pypi/v/djangorestframework-xml.svg">
@@ -90,14 +90,13 @@ class UserViewSet(viewsets.ModelViewSet):
 Install testing requirements.
 
 ```bash
-$ pip install -r requirements.txt
-$ pip install -r requirements-test.txt
+$ pip install -e '.[dev]'
 ```
 
-Run with runtests.
+Run with pytest.
 
 ```bash
-$ ./runtests.py
+$ pytest
 ```
 
 You can also use the excellent [tox](http://tox.readthedocs.org/en/latest/) testing tool to run the tests against all supported versions of Python and Django. Install tox globally, and then simply run:

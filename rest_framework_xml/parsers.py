@@ -1,12 +1,10 @@
 """
 Provides XML parsing support.
 """
-from __future__ import unicode_literals
 import datetime
 import decimal
 
 from django.conf import settings
-from django.utils import six
 from rest_framework.exceptions import ParseError
 from rest_framework.parsers import BaseParser
 
@@ -18,21 +16,21 @@ class XMLParser(BaseParser):
     XML parser.
     """
 
-    media_type = 'application/xml'
+    media_type = "application/xml"
 
     def parse(self, stream, media_type=None, parser_context=None):
         """
         Parses the incoming bytestream as XML and returns the resulting data.
         """
-        assert etree, 'XMLParser requires defusedxml to be installed'
+        assert etree, "XMLParser requires defusedxml to be installed"
 
         parser_context = parser_context or {}
-        encoding = parser_context.get('encoding', settings.DEFAULT_CHARSET)
+        encoding = parser_context.get("encoding", settings.DEFAULT_CHARSET)
         parser = etree.DefusedXMLParser(encoding=encoding)
         try:
             tree = etree.parse(stream, parser=parser, forbid_dtd=True)
         except (etree.ParseError, ValueError) as exc:
-            raise ParseError('XML parse error - %s' % six.text_type(exc))
+            raise ParseError("XML parse error - %s" % str(exc))
         data = self._xml_convert(tree.getroot())
 
         return data
@@ -68,7 +66,7 @@ class XMLParser(BaseParser):
             return value
 
         try:
-            return datetime.datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
+            return datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
         except ValueError:
             pass
 

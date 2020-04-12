@@ -17,4 +17,9 @@ lib/
 local/
 
 !.gitignore
-!.travis.yml
+!.github
+!.flake8
+!.isort.cfg
+!.pre-commit-config.yaml
+
+pip-wheel-metadata
