@@ -1,12 +1,10 @@
 """
 Provides XML rendering support.
 """
-from __future__ import unicode_literals
+from io import StringIO
 
-from django.utils import six
+from django.utils.encoding import force_str
 from django.utils.xmlutils import SimplerXMLGenerator
-from django.utils.six.moves import StringIO
-from django.utils.encoding import force_text
 from rest_framework.renderers import BaseRenderer
 
 
@@ -15,18 +13,18 @@ class XMLRenderer(BaseRenderer):
     Renderer which serializes to XML.
     """
 
-    media_type = 'application/xml'
-    format = 'xml'
-    charset = 'utf-8'
-    item_tag_name = 'list-item'
-    root_tag_name = 'root'
+    media_type = "application/xml"
+    format = "xml"
+    charset = "utf-8"
+    item_tag_name = "list-item"
+    root_tag_name = "root"
 
     def render(self, data, accepted_media_type=None, renderer_context=None):
         """
         Renders `data` into serialized XML.
         """
         if data is None:
-            return ''
+            return ""
 
         stream = StringIO()
 
@@ -48,7 +46,7 @@ class XMLRenderer(BaseRenderer):
                 xml.endElement(self.item_tag_name)
 
         elif isinstance(data, dict):
-            for key, value in six.iteritems(data):
+            for key, value in data.items():
                 xml.startElement(key, {})
                 self._to_xml(xml, value)
                 xml.endElement(key)
@@ -58,4 +56,4 @@ class XMLRenderer(BaseRenderer):
             pass
 
         else:
-            xml.characters(force_text(data))
+            xml.characters(force_str(data))
