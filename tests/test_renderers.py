@@ -36,7 +36,7 @@ class XMLRendererTestCase(TestCase):
 
     def test_render_string(self):
         """
-        Test SOAP rendering.
+        Test XML rendering.
         """
         renderer = XMLRenderer()
         content = renderer.render({'Field': 'astring'}, 'application/xml')
@@ -44,7 +44,7 @@ class XMLRendererTestCase(TestCase):
 
     def test_render_integer(self):
         """
-        Test SOAP rendering.
+        Test XML rendering.
         """
         renderer = XMLRenderer()
         content = renderer.render({'Field': 111}, 'application/xml')
@@ -52,7 +52,7 @@ class XMLRendererTestCase(TestCase):
 
     def test_render_datetime(self):
         """
-        Test SOAP rendering.
+        Test XML rendering.
         """
         renderer = XMLRenderer()
         content = renderer.render({
@@ -62,7 +62,7 @@ class XMLRendererTestCase(TestCase):
 
     def test_render_float(self):
         """
-        Test SOAP rendering.
+        Test XML rendering.
         """
         renderer = XMLRenderer()
         content = renderer.render({'Field': 123.4}, 'application/xml')
@@ -70,7 +70,7 @@ class XMLRendererTestCase(TestCase):
 
     def test_render_decimal(self):
         """
-        Test SOAP rendering.
+        Test XML rendering.
         """
         renderer = XMLRenderer()
         content = renderer.render({'Field': Decimal('111.2')}, 'application/xml')
@@ -78,7 +78,7 @@ class XMLRendererTestCase(TestCase):
 
     def test_render_none(self):
         """
-        Test SOAP rendering.
+        Test XML rendering.
         """
         renderer = XMLRenderer()
         content = renderer.render({'Field': None}, 'application/xml')
@@ -86,7 +86,7 @@ class XMLRendererTestCase(TestCase):
 
     def test_render_complex_data(self):
         """
-        Test SOAP rendering.
+        Test XML rendering.
         """
         renderer = XMLRenderer()
         content = renderer.render(self._complex_data, 'application/xml')
@@ -108,7 +108,7 @@ class XMLRendererTestCase(TestCase):
     @skipUnless(etree, 'defusedxml not installed')
     def test_render_and_parse_complex_data(self):
         """
-        Test SOAP rendering.
+        Test XML rendering.
         """
         renderer = XMLRenderer()
         content = StringIO(renderer.render(self._complex_data, 'application/xml'))
