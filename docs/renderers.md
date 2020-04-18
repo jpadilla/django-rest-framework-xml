@@ -62,3 +62,17 @@ If you are considering using `XML` for your API, you may want to consider implem
 **item_tag_name**: `list-item`
 
 **.root_tag_name**: `root`
+
+## SOAP Renderer
+
+If you are considering using `SOAP` renderer for your API, you may must need to create your own custom SOAP envelope structure.
+
+**soap_tag**: `SOAP-TEST`
+**soap_endpoint**: `https://xml.com/soap`
+**soap_service**: `soapService`
+
+For creating your SOAP envelope structure you must need to reload the schema:
+
+    renderer = SOAPRenderer
+    renderer.set_schema_attrs(soap_tag, soap_endpoint, soap_service)
+    renderer_classes = (renderer,)
