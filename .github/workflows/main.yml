@@ -20,11 +20,11 @@
       strategy:
         matrix:
           platform: ["ubuntu-latest"]
-          python-version: ["3.5", "3.6", "3.7", "3.8"]
+          python-version: ["3.8", "3.9", "3.10", "3.11"]
 
       steps:
-        - uses: "actions/checkout@v2"
-        - uses: "actions/setup-python@v1"
+        - uses: "actions/checkout@v4"
+        - uses: "actions/setup-python@v4"
           with:
             python-version: "${{ matrix.python-version }}"
         - name: "Install dependencies"
@@ -44,10 +44,10 @@
       runs-on: "ubuntu-latest"
 
       steps:
-        - uses: "actions/checkout@v2"
-        - uses: "actions/setup-python@v1"
+        - uses: "actions/checkout@v4"
+        - uses: "actions/setup-python@v4"
           with:
-            python-version: "3.8"
+            python-version: "3.11"
 
         - name: "Install pep517 and twine"
           run: "python -m pip install pep517 twine"
@@ -67,10 +67,10 @@
       runs-on: "${{ matrix.os }}"
 
       steps:
-        - uses: "actions/checkout@v2"
-        - uses: "actions/setup-python@v1"
+        - uses: "actions/checkout@v4"
+        - uses: "actions/setup-python@v4"
           with:
-            python-version: "3.8"
+            python-version: "3.11"
         - name: "Install in dev mode"
           run: "python -m pip install -e .[dev]"
         - name: "Import package"

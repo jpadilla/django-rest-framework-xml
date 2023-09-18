@@ -48,8 +48,8 @@ def pytest_configure():
     )
 
     try:
-        import oauth_provider  # NOQA
         import oauth2  # NOQA
+        import oauth_provider  # NOQA
     except ImportError:
         pass
     else:
